@@ -11,10 +11,11 @@ import SwiftUI
 struct ProductModel: Hashable, Identifiable, Codable {
     var id: Int
     var name: String
-    var price: String
+    var price: Int
     var quantity: Int
     var description: String
     var imageName: String
+    
     var image: Image {
         Image(imageName)
     }

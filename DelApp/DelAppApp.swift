@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct DelAppApp: App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct CatalogueView: View {
+    @EnvironmentObject var modelData: ModelData
+    @ObservedObject var cart: CartModel
+    var products: [ProductModel]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationSplitView {
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 16) {
+                    ForEach(products) { product in
+                        NavigationLink {
+                            ProductDetail(cart: cart,product: product)
+                        } label :{
+                            ProductRow(product: product)
+                                .foregroundStyle(.black)
+                        }
+                        
+                    }
+                }
+                .padding()
+                .navigationTitle("Каталог")
+            }
+        } detail: {
+            Text("")
+        }
     }
 }
 
 #Preview {
-    CatalogueView()
+    CatalogueView(cart: CartModel(), products: ModelData().products)
 }

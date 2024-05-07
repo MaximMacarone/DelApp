@@ -24,15 +24,22 @@ class AuthModel: ObservableObject {
         }
     }
     
-    func signUp(email: String, password: String) {
-        Auth.auth().createUser(withEmail: email, password: password)
+    func signUp(email: String, password: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { _, error in
+        completion(error)}
     }
     
-    func signIn(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password)
+    func signIn(email: String, password: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+            completion(error)}
     }
     
-    func signOut() {
-        try? Auth.auth().signOut()
+    func signOut(completion: @escaping (Error?) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion(nil)
+        } catch let error {
+            completion(error)
+        }
     }
 }

@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct UserModel: Observable {
+    var firstName: String
+    var lastName: String
+    var phoneNumber: String
+    var email: String
+    var address: String
+    
+}
